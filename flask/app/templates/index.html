@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My website</title>
+    <title>Temp readings</title>
 </head>
 <body>
-    <h1>Hejhej</h1>
+    {% for reading in readings %}
+        <p> {{ reading['message'] }} </p>
+    {% endfor %}
 </body>
 </html>
