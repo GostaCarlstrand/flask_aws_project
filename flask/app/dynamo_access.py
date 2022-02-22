@@ -12,7 +12,7 @@ def get_resource():
 
 def get_all_readings():
     client = get_resource()
-    table = client.Table('temp_readings')
+    table = client.Table('alarm-sensor-activity')
     response = table.scan()
     return response['Items']
 

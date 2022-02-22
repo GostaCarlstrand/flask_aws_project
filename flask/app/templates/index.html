@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
     <title>Temp readings</title>
 </head>
 <body>
-    {% for reading in readings %}
-        <p> {{ reading['message'] }} </p>
-    {% endfor %}
+
 </body>
+<script src="https://pixijs.download/release/pixi.js"></script>
+<script>
+    function getAnyAlarm() {
+
+    }
+
+</script>
 </html>
