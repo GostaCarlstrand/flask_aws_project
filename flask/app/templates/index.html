@@ -11,10 +11,10 @@
 </body>
 <script src="https://pixijs.download/release/pixi.js"></script>
 <script>
-    const api_url = "ec2-13-48-42-170.eu-north-1.compute.amazonaws.com/api/v1.0/alarm"
+
+    const api_url = "https://ec2-13-48-57-227.eu-north-1.compute.amazonaws.com/api/v1.0/alarm"
     setInterval(getAlarm, 5000)
     function getAlarm() {
-
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function () {
             let alarm = JSON.parse(this.responseText);
@@ -25,6 +25,20 @@
         xhttp.open('GET', api_url)
         xhttp.send()
     }
+
+    const app = new PIXI.Application({
+    width: 800, height: 600,  resolution: window.devicePixelRatio || 1,
+    });
+    document.body.appendChild(app.view);
+
+    const graphics = new PIXI.Graphics();
+
+    graphics.lineStyle(2, 0xFF00FF, 1);
+    graphics.beginFill(0x650A5A, 0.25);
+    graphics.drawRoundedRect(50, 440, 100, 100, 16);
+    graphics.endFill();
+
+    app.stage.addChild(graphics);
 
 </script>
 </html>
