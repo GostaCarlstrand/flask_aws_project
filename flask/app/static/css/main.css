@@ -1,4 +1,52 @@
+@font-face{
+  font-family: BigPixel;
+  src: url("https://www.1001fonts.com/big-pixel-shadowed-demo-font.html");
+}
+
+h1 {
+  size: 90px;
+  font-family: BigPixel;
+}
+
 body {
 background-image: linear-gradient(to right, darkred, indianred);
 
+}
+
+.buttonGreen {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.buttonGreen:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.buttonRed {
+  background-color: #f44336; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.buttonRed:hover {
+  background-color: #f44336;
+  color: white;
 }
