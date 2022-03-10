@@ -4,63 +4,45 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
 
-    <title>Temp readings</title>
+    <title>Alarm</title>
 </head>
 <body>
-    <h1 id="alarmState"></h1>
-    <p id="alarm"></p>
 
 
-    <button id="alarm_button" class=".buttonGreen" onclick="activateAlarm()"> Activate alarm </button>
+    <table>
+        <h1>Latest data</h1>
+    <tr>
+    <br/>
+    <th>
+        Position
+    </th>
+    <br/>
+    <th>
+        Datatime
+    </th>
+    <br/>
+    <th>
+        Device
+    </th>
+    <br/>
+    </tr>
+
+    {% for reading in readings %}
+        <tr>
+        <td>{{ reading.pos }}</td><br/>
+        <td>{{ reading.datatime }}</td><br/>
+        <td>{{ reading.device }}</td><br/>
+        </tr>
+    {%  endfor %}
+    </table>
+    <div class="alarm-state" id="alarmState"></div>
+    <div class="alarm" id="alarm"></div>
+
+
+    <button id= "alarm_button" class=".buttonGreen" onclick="activateAlarm()"> Activate alarm </button>
 
 </body>
 <script src="https://pixijs.download/release/pixi.js"></script>
-<script>
-    let alarmText;
-    let alarmState;
-    const api_url = "http://13.48.57.227/api/v1.0/alarm"
-    const local_api = "http://127.0.0.1"
-    activateAlarm()
-    setInterval(getAlarm, 5000)
-    function activateAlarm(){
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            alarmState = JSON.parse(this.responseText);
-            let button = document.getElementById("alarm_button")
-            console.log(button)
-            if (alarmState.Alarm == "Activated") {
-                document.getElementById("alarm_button").innerHTML = "Deactivate alarm"
-                document.getElementById("alarm_button").classList.remove('buttonGreen');
-                document.getElementById("alarm_button").classList.add('buttonRed');
+<script src="static/script/index.js"></script>
 
-            }
-            else {
-                document.getElementById("alarm_button").innerHTML = "Activate alarm"
-                document.getElementById("alarm_button").classList.remove('buttonRed');
-                document.getElementById("alarm_button").classList.add('buttonGreen');
-            }
-            console.log(JSON.stringify((alarmState)))
-            document.getElementById("alarmState").innerText = alarmState.Alarm
-
-        }
-
-        xhttp.open('POST', (local_api + "/alarm_activate"))
-        xhttp.send()
-
-    }
-    function getAlarm() {
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            alarmText = JSON.parse(this.responseText);
-            console.log(JSON.stringify((alarmText)))
-            document.getElementById("alarm").innerText = JSON.stringify(alarmText)
-        }
-
-
-        xhttp.open('GET', (local_api + "/api/v1.0/alarm"))
-        xhttp.send()
-    }
-
-
-</script>
 </html>
